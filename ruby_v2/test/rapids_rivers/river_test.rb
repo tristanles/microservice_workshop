@@ -60,6 +60,22 @@ class RiverTest < MiniTest::Test
     @rapids_connection.received_message SOLUTION_STRING
   end
 
+  def test_empty_array_field_implies_missing
+    @river.require 'contributing_services'
+    @service.define_singleton_method :on_error do |send_port, errors|
+      assert_errors errors
+    end
+    @rapids_connection.received_message SOLUTION_STRING
+  end
+
+  def test_empty_string_field_implies_missing
+    @river.require 'frequent_renter'
+    @service.define_singleton_method :on_error do |send_port, errors|
+      assert_errors errors
+    end
+    @rapids_connection.received_message SOLUTION_STRING
+  end
+
   def test_forbidden_field
     @river.forbid 'frequent_renter', 'contributing_services', 'missing_key'
     @service.define_singleton_method :packet do |send_port, packet, warnings|
