@@ -49,7 +49,7 @@ public class Packet {
 
     void require(String... requiredJsonKeys) {
         for (String key : requiredJsonKeys) {
-            if (hasKey(key)) { addAccessor(key); continue; }
+            if (hasKey(key) && !isKeyEmpty(key)) { addAccessor(key); continue; }
             problems.error("Missing required key '" + key + "'");
         }
     }
@@ -109,8 +109,8 @@ public class Packet {
         return !hasKey(forbiddenJsonKey) || isKeyEmpty(forbiddenJsonKey);
     }
 
-    private boolean isKeyEmpty(String forbiddenJsonKey) {
-        Object value = jsonHash.get(forbiddenJsonKey);
+    private boolean isKeyEmpty(String jsonKey) {
+        Object value = jsonHash.get(jsonKey);
         if (value instanceof String && ((String)value).isEmpty()) return true;
         if (!(value instanceof Collection)) return false;
         return ((Collection)value).isEmpty();

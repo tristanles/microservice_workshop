@@ -37,6 +37,7 @@ public class RiverTest {
     private final static String NEED_KEY = "need";
     private final static String KEY_TO_BE_ADDED = "key_to_be_added";
     private static final String EMPTY_ARRAY_KEY = "contributing_services";
+    private static final String EMPTY_STRING_KEY = "frequent_renter";
     private static final String INTERESTING_KEY = "frequent_renter";
     private static final String SOLUTIONS_KEY = "solutions";
 
@@ -151,6 +152,30 @@ public class RiverTest {
     @Test
     public void forbiddenFieldRejected() throws Exception {
         river.forbid(NEED_KEY);
+        river.register(new TestPacketListener() {
+            @Override
+            public void onError(RapidsConnection connection, PacketProblems errors) {
+                assertTrue(errors.hasErrors());
+            }
+        });
+        rapidsConnection.process(SOLUTION_STRING);
+    }
+
+    @Test
+    public void emptyArrayFailsRequire() throws Exception {
+        river.require(EMPTY_ARRAY_KEY);
+        river.register(new TestPacketListener() {
+            @Override
+            public void onError(RapidsConnection connection, PacketProblems errors) {
+                assertTrue(errors.hasErrors());
+            }
+        });
+        rapidsConnection.process(SOLUTION_STRING);
+    }
+
+    @Test
+    public void emptyStringFailsRequire() throws Exception {
+        river.require(EMPTY_STRING_KEY);
         river.register(new TestPacketListener() {
             @Override
             public void onError(RapidsConnection connection, PacketProblems errors) {
