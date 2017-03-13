@@ -23,7 +23,7 @@ namespace RentalOffer.Monitor
 
         public void ProcessPacket(RapidsConnection connection, JObject jsonPacket, PacketProblems warnings)
         {
-            Console.WriteLine(" [x] {0}", warnings);
+            Console.WriteLine(" [*] {0}", warnings);
         }
 
         public void ProcessError(RapidsConnection connection, PacketProblems errors)

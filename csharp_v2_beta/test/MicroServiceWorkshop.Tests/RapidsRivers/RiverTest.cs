@@ -23,17 +23,17 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
             "]," +
             "\"frequent_renter\":\"\"," +
             "\"sample_float_key\":1.25," +
-            "\"system.read_count\":2," +
+            "\"system_read_count\":2," +
             "\"contributing_services\":[]}";
 
         private const string SimplePacketString =
             "{\"frequent_renter\":\"silver\"}";
 
         private const string MissingComma =
-            "{\"frequent_renter\":\"\" \"read_count\":2}";
+            "{\"frequent_renter\":\"\" \"system_read_count\":2}";
 
         private const string InvalidReadCountValue =
-            "{\"frequent_renter\":\"\",\"read_count\":\"erroneous_value\"}";
+            "{\"frequent_renter\":\"\",\"system_read_count\":\"erroneous_value\"}";
 
         private const string NeedKey = "need";
         private const string UserIdKey = "user_id";
@@ -42,7 +42,7 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
         private const string EmptyArrayKey = "contributing_services";
         private const string InterestingKey = "frequent_renter";
         private const string SolutionsKey = "solutions";
-        private const string ReadCountKey = "system.read_count";
+        private const string ReadCountKey = "system_read_count";
 
         private TestRapidsConnection _rapidsConnection;
         private River _river;

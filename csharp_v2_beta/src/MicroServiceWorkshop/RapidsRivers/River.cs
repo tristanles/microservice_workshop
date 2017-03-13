@@ -12,7 +12,7 @@ namespace MicroServiceWorkshop.RapidsRivers
 {
     public class River : RapidsConnection.IMessageListener
     {
-        private const string ReadCountKey = "system.read_count";
+        private const string ReadCountKey = "system_read_count";
 
         private readonly List<IPacketListener> _listeners = new List<IPacketListener>();
         private readonly List<IValidation> _validations = new List<IValidation>();

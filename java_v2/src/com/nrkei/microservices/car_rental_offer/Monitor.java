@@ -35,6 +35,6 @@ public class Monitor implements River.PacketListener {
 
     @Override
     public void onError(RapidsConnection connection, PacketProblems errors) {
-        System.out.println(String.format(" [*] %s", errors));
+        System.out.println(String.format(" [x] %s", errors));
     }
 }

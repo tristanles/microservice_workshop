@@ -28,7 +28,7 @@ public class RiverTest {
                     "{\"offer\":\"free upgrade\"}" +
                     "]," +
                     "\"frequent_renter\":\"\"," +
-                    "\"system.read_count\":2," +
+                    "\"system_read_count\":2," +
                     "\"contributing_services\":[]}";
 
     private final static String MISSING_COMMA =

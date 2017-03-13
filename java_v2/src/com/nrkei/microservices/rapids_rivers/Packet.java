@@ -13,7 +13,7 @@ import java.util.*;
 // Understands a specific JSON-formatted message
 public class Packet {
 
-    final static String READ_COUNT = "system.read_count";
+    final static String READ_COUNT = "system_read_count";
 
     private Map<String, Object> jsonHash;
     private final Map<String, Object> recognizedKeys = new HashMap<>();

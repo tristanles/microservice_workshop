@@ -24,7 +24,7 @@ class RentalNeed
   def start
     loop do
       @rapids_connection.publish need_packet
-      puts " [x] Published a rental offer need on the bus:\n\t     #{need_packet.to_json}"
+      puts " [<] Published a rental offer need on the bus:\n\t     #{need_packet.to_json}"
       sleep 5
     end
   end

@@ -38,7 +38,7 @@ class MonitorAll
   end
 
   def on_error rapids_connection, errors
-    puts " [*] #{errors}"
+    puts " [x] #{errors}"
   end
 
 end
