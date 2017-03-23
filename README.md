@@ -19,8 +19,8 @@ will provide instances of RabbitMQ if this is not feasible.
 ## Language Sample Setup
 The starting code is designed to allow attendees to quickly begin designing and developing
 new MicroServices. The following languages have sample code:
-- Java (use v2)
-- C# (try v2 beta code; if issues, drop back to v1)
+- Java
+- C#
 - Ruby
 
 See the README.md files in each of the language-specific directories for setup instructions.
@@ -36,6 +36,9 @@ and the Wifi load can be troublesome at times.
 
 Alternatively if you have Docker installed locally, attendees can bring up their own
 RabbitMQ instances. Please use the standard rabbitmq:management pull.
+
+Also, please make sure to configure your system to allow external access to your own
+RabbitMQ. Pairs share instances of RabbitMQ, and most OS will block the ports by default.
 
 ## Service operation
 Regardless of language, the startup parameters for the services are the same:
