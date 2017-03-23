@@ -139,6 +139,31 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
         }
 
         [Test]
+        public void RequiredValueDetected()
+        {
+            _river.RequireValue(NeedKey, "car_rental_offer");
+            _river.Register(new TestRiver((connection, jsonPacket, warnings) =>
+            {
+                Assert.False(warnings.HasErrors());
+                Assert.AreEqual("car_rental_offer", (string)jsonPacket[NeedKey]);
+            }));
+            _rapidsConnection.Process(SolutionString);
+        }
+
+        [Test]
+        public void MissingRequiredValueDetected()
+        {
+            _river.RequireValue(NeedKey, "hotel_booking_offer");
+            _river.Register(new TestRiver((connection, problems) =>
+            {
+                Assert.True(problems.HasErrors());
+                Assert.That(problems.ToString(), Does.Contain("car_rental_offer"));
+                Assert.That(problems.ToString(), Does.Contain("hotel_booking_offer"));
+            }));
+            _rapidsConnection.Process(SolutionString);
+        }
+
+        [Test]
         public void ForbiddenKeyMissing()
         {
             _river.Forbid("forbidden_key_1", "forbidden_key_2");

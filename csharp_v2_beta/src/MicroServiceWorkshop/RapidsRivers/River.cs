@@ -80,6 +80,12 @@ namespace MicroServiceWorkshop.RapidsRivers
             foreach (IPacketListener l in _listeners) l.ProcessPacket(sendPort, jsonPacket, warnings);
         }
 
+        public River RequireValue(string key, string value)
+        {
+            _validations.Add(new RequiredValue(key, value));
+            return this;
+        }
+
         public River Require(params string[] jsonKeyStrings)
         {
             _validations.Add(new RequiredKeys(jsonKeyStrings));
@@ -101,6 +107,32 @@ namespace MicroServiceWorkshop.RapidsRivers
         private interface IValidation
         {
             void Validate(JObject jsonPacket, PacketProblems problems);
+        }
+
+        private class RequiredValue : IValidation
+        {
+            private readonly string _requiredKey;
+            private readonly string _requiredValue;
+
+            internal RequiredValue(string key, string value)
+            {
+                _requiredKey = key;
+                _requiredValue = value;
+            }
+
+            public void Validate(JObject jsonPacket, PacketProblems problems)
+            {
+                if (jsonPacket[_requiredKey] == null)
+                {
+                    problems.Error("Missing required key '" + _requiredKey + "'");
+                    return;
+                }
+                if (((string) jsonPacket[_requiredKey]) != _requiredValue)
+                    problems.Error(
+                        "Required key '" + _requiredKey + 
+                        "' should be '" + this._requiredValue +
+                        "', but has unexpected value of '" + jsonPacket[_requiredKey] + "'");
+            }
         }
 
         private class RequiredKeys : IValidation
