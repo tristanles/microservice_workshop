@@ -40,6 +40,7 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
         private const string SampleFloatKey = "sample_float_key";
         private const string KeyToBeAdded = "key_to_be_added";
         private const string EmptyArrayKey = "contributing_services";
+        private const string EmptyStringKey = "frequent_renter";
         private const string InterestingKey = "frequent_renter";
         private const string SolutionsKey = "solutions";
         private const string ReadCountKey = "system_read_count";
@@ -134,6 +135,30 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
             {
                 Assert.True(problems.HasErrors());
                 Assert.That(problems.ToString(), Does.Contain("missing_key"));
+            }));
+            _rapidsConnection.Process(SolutionString);
+        }
+
+        [Test]
+        public void EmptyArrayFailsRequire()
+        {
+            _river.Require(EmptyArrayKey);
+            _river.Register(new TestRiver((connection, problems) =>
+            {
+                Assert.True(problems.HasErrors());
+                Assert.That(problems.ToString(), Does.Contain(EmptyArrayKey));
+            }));
+            _rapidsConnection.Process(SolutionString);
+        }
+
+        [Test]
+        public void EmptyStringFailsRequire()
+        {
+            _river.Require(EmptyStringKey);
+            _river.Register(new TestRiver((connection, problems) =>
+            {
+                Assert.True(problems.HasErrors());
+                Assert.That(problems.ToString(), Does.Contain(EmptyStringKey));
             }));
             _rapidsConnection.Process(SolutionString);
         }

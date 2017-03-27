@@ -147,8 +147,17 @@ namespace MicroServiceWorkshop.RapidsRivers
             public void Validate(JObject jsonPacket, PacketProblems problems)
             {
                 foreach (string key in _requiredKeys)
-                    if (jsonPacket[key] == null)
+                {
+                    JToken token = jsonPacket[key];
+                    // Tests as suggested by NewtonSoft recommendations
+                    if ((token == null) ||
+                        (token.Type == JTokenType.Array && !token.HasValues) ||
+                        (token.Type == JTokenType.Object && !token.HasValues) ||
+                        (token.Type == JTokenType.String && token.ToString() == String.Empty) ||
+                        (token.Type == JTokenType.Null))
                         problems.Error("Missing required key '" + key + "'");
+                    else problems.Information("Required key '" + key + "' actually exists");
+                }
             }
         }
 
