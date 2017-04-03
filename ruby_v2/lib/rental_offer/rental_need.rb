@@ -32,7 +32,7 @@ class RentalNeed
   private
 
     def need_packet
-      Packet.new(need: 'rental_car_offer')
+      Packet.new(need: 'car_rental_offer')
     end
 
 end

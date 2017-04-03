@@ -37,7 +37,6 @@ public class Need {
     private static Packet needPacket() {
         HashMap<String, Object> jsonMap = new HashMap<>();
         jsonMap.put("need", "car_rental_offer");
-        jsonMap.put("solutions", new String[0]);
         return new Packet(jsonMap);
     }
 }

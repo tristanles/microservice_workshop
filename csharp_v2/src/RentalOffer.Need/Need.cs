@@ -35,8 +35,7 @@ namespace RentalOffer.Need
         private static string NeedPacket()
         {
             return
-                "{\"need\":\"car_rental_offer\"," +
-                "\"solutions\":[]}";
+                "{\"need\":\"car_rental_offer\"}";
         }
     }
 }
