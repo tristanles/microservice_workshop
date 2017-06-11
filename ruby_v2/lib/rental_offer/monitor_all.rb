@@ -10,7 +10,7 @@
 
 require 'securerandom'
 
-require '../rapids_rivers/rabbit_mq/rabbit_mq_rapids'
+require_relative '../rapids_rivers/rabbit_mq/rabbit_mq_rapids'
 
 # Understands the complete stream of messages on an event bus
 class MonitorAll
