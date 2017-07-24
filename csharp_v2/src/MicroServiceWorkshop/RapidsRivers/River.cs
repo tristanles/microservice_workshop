@@ -12,7 +12,7 @@ namespace MicroServiceWorkshop.RapidsRivers
 {
     public class River : RapidsConnection.IMessageListener
     {
-        private const string ReadCountKey = "system_read_count";
+        private const string RepublishCountKey = "system_republish_count";
 
         private readonly List<IPacketListener> _listeners = new List<IPacketListener>();
         private readonly List<IValidation> _validations = new List<IValidation>();
@@ -31,26 +31,35 @@ namespace MicroServiceWorkshop.RapidsRivers
         {
             PacketProblems problems = new PacketProblems(message);
             JObject jsonPacket = JsonPacket(message, problems);
+            Validate(problems, jsonPacket);
+            TriggerService(sendPort, problems, jsonPacket);
+        }
+
+        private void TriggerService(RapidsConnection sendPort, PacketProblems problems, JObject jsonPacket)
+        {
+            if (problems.HasErrors())
+            {
+                OnError(sendPort, problems);
+                return;
+            }
+            IncrementRepublishCount(jsonPacket);
+            OnPacket(sendPort, jsonPacket, problems);
+        }
+
+        private void Validate(PacketProblems problems, JObject jsonPacket)
+        {
             foreach (IValidation v in _validations)
             {
                 if (problems.AreSevere()) break;
                 v.Validate(jsonPacket, problems);
             }
-            if (problems.HasErrors())
-                OnError(sendPort, problems);
-            else
-            {
-                IncrementReadCount(jsonPacket);
-                Packet(sendPort, jsonPacket, problems);
-            }
         }
 
         private JObject JsonPacket(string message, PacketProblems problems)
         {
-            JObject result = null;
             try
             {
-                result = JObject.Parse(message);
+                return JObject.Parse(message);
             }
             catch (JsonException)
             {
@@ -58,26 +67,28 @@ namespace MicroServiceWorkshop.RapidsRivers
             }
             catch (Exception e)
             {
-                problems.SevereError("Unknown failure. HandleMessage is: " + e.Message);
+                problems.SevereError("Unknown failure. Exception message is: " + e.Message);
             }
-            return result;
+            return null;
         }
 
-        private void IncrementReadCount(JObject jsonPacket)
+        private void IncrementRepublishCount(JObject packet)
         {
-            if (jsonPacket[ReadCountKey] == null || jsonPacket[ReadCountKey].Type != JTokenType.Integer)
-                jsonPacket[ReadCountKey] = 0;
-            jsonPacket[ReadCountKey] = (int)jsonPacket[ReadCountKey] + 1;
+            if (packet[RepublishCountKey] == null || packet[RepublishCountKey].Type != JTokenType.Integer)
+                packet[RepublishCountKey] = 0;
+            packet[RepublishCountKey] = (int)packet[RepublishCountKey] + 1;
         }
 
         private void OnError(RapidsConnection sendPort, PacketProblems errors)
         {
-            foreach (IPacketListener l in _listeners) l.ProcessError(sendPort, errors);
+            foreach (IPacketListener l in _listeners)
+                l.ProcessError(sendPort, errors);
         }
 
-        private void Packet(RapidsConnection sendPort, JObject jsonPacket, PacketProblems warnings)
+        private void OnPacket(RapidsConnection sendPort, JObject jsonPacket, PacketProblems warnings)
         {
-            foreach (IPacketListener l in _listeners) l.ProcessPacket(sendPort, jsonPacket, warnings);
+            foreach (IPacketListener l in _listeners)
+                l.ProcessPacket(sendPort, jsonPacket, warnings);
         }
 
         public River RequireValue(string key, string value)
@@ -98,6 +109,16 @@ namespace MicroServiceWorkshop.RapidsRivers
             return this;
         }
 
+        private static bool IsMissingValue(JToken token)
+        {
+            // Tests as suggested by NewtonSoft recommendations
+            return token == null ||
+                   token.Type == JTokenType.Array && !token.HasValues ||
+                   token.Type == JTokenType.Object && !token.HasValues ||
+                   token.Type == JTokenType.String && token.ToString() == string.Empty ||
+                   token.Type == JTokenType.Null;
+        }
+
         public interface IPacketListener
         {
             void ProcessPacket(RapidsConnection connection, JObject jsonPacket, PacketProblems warnings);
@@ -114,7 +135,7 @@ namespace MicroServiceWorkshop.RapidsRivers
             private readonly string _requiredKey;
             private readonly string _requiredValue;
 
-            internal RequiredValue(string key, string value)
+            internal RequiredValue(string key, string value) // Possible use of KeyValuePair object
             {
                 _requiredKey = key;
                 _requiredValue = value;
@@ -124,14 +145,11 @@ namespace MicroServiceWorkshop.RapidsRivers
             {
                 if (jsonPacket[_requiredKey] == null)
                 {
-                    problems.Error("Missing required key '" + _requiredKey + "'");
+                    problems.Error($"Missing required key \'{_requiredKey}\'");
                     return;
                 }
-                if (((string) jsonPacket[_requiredKey]) != _requiredValue)
-                    problems.Error(
-                        "Required key '" + _requiredKey + 
-                        "' should be '" + this._requiredValue +
-                        "', but has unexpected value of '" + jsonPacket[_requiredKey] + "'");
+                if ((string) jsonPacket[_requiredKey] != _requiredValue)
+                    problems.Error($"Required key \'{_requiredKey}\' should be \'{_requiredValue}\', but has unexpected value of \'{jsonPacket[_requiredKey]}\'");
             }
         }
 
@@ -148,15 +166,10 @@ namespace MicroServiceWorkshop.RapidsRivers
             {
                 foreach (string key in _requiredKeys)
                 {
-                    JToken token = jsonPacket[key];
-                    // Tests as suggested by NewtonSoft recommendations
-                    if ((token == null) ||
-                        (token.Type == JTokenType.Array && !token.HasValues) ||
-                        (token.Type == JTokenType.Object && !token.HasValues) ||
-                        (token.Type == JTokenType.String && token.ToString() == String.Empty) ||
-                        (token.Type == JTokenType.Null))
-                        problems.Error("Missing required key '" + key + "'");
-                    else problems.Information("Required key '" + key + "' actually exists");
+                    if (IsMissingValue(jsonPacket[key]))
+                        problems.Error($"Missing required key \'{key}\'");
+                    else
+                        problems.Information($"Required key \'{key}\' actually exists");
                 }
             }
         }
@@ -174,15 +187,10 @@ namespace MicroServiceWorkshop.RapidsRivers
             {
                 foreach (string key in _forbiddenKeys)
                 {
-                    JToken token = jsonPacket[key];
-                    // Tests as suggested by NewtonSoft recommendations
-                    if ((token == null) ||
-                        (token.Type == JTokenType.Array && !token.HasValues) ||
-                        (token.Type == JTokenType.Object && !token.HasValues) ||
-                        (token.Type == JTokenType.String && token.ToString() == String.Empty) ||
-                        (token.Type == JTokenType.Null))
-                        problems.Information("Forbidden key '" + key + "' does not exist");
-                    else problems.Error("Forbidden key '" + key + "' actually exists");
+                    if (IsMissingValue(jsonPacket[key]))
+                        problems.Information($"Forbidden key \'{key}\' does not exist");
+                    else
+                        problems.Error($"Forbidden key \'{key}\' actually exists");
                 }
             }
         }

@@ -23,40 +23,19 @@ namespace MicroServiceWorkshop.RapidsRivers
             _originalJson = originalJson;
         }
 
-        public bool AreSevere()
-        {
-            return _severeErrors.Any();
-        }
+        public bool AreSevere() => _severeErrors.Any();
 
-        public bool HasErrors()
-        {
-            return AreSevere() ||_errors.Any();
-        }
+        public bool HasErrors() => AreSevere() || _errors.Any();
 
-        private bool HasMessages()
-        {
-            return HasErrors() || _informationalMessages.Any() || _warnings.Any();
-        }
+        private bool HasMessages() => HasErrors() || _informationalMessages.Any() || _warnings.Any();
 
-        public void Information(string explanation)
-        {
-            _informationalMessages.Add(explanation);
-        }
+        public void Information(string explanation) => _informationalMessages.Add(explanation);
 
-        public void Warning(string explanation)
-        {
-            _warnings.Add(explanation);
-        }
+        public void Warning(string explanation) => _warnings.Add(explanation);
 
-        public void Error(string explanation)
-        {
-            _errors.Add(explanation);
-        }
+        public void Error(string explanation) => _errors.Add(explanation);
 
-        public void SevereError(string explanation)
-        {
-            _severeErrors.Add(explanation);
-        }
+        public void SevereError(string explanation) => _severeErrors.Add(explanation);
 
         public override string ToString()
         {
@@ -68,14 +47,14 @@ namespace MicroServiceWorkshop.RapidsRivers
             Append("Errors", _errors, builder);
             Append("Warnings", _warnings, builder);
             Append("Information", _informationalMessages, builder);
-            builder.Append("\n");
+            builder.AppendLine();
             return builder.ToString();
         }
 
         private void Append(string label, List<string> explanations, StringBuilder builder)
         {
             if (explanations.Count == 0) return;
-            builder.Append("\n");
+            builder.AppendLine();
             builder.Append(label);
             builder.Append(": ");
             builder.Append(explanations.Count);
