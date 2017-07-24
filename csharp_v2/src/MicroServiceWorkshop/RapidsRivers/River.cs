@@ -109,6 +109,12 @@ namespace MicroServiceWorkshop.RapidsRivers
             return this;
         }
 
+        public River RepublishLimit(int limit = 9)
+        {
+            _validations.Add(new LimitRepublishCount(limit));
+            return this;
+        }
+
         private static bool IsMissingValue(JToken token)
         {
             // Tests as suggested by NewtonSoft recommendations
@@ -192,6 +198,24 @@ namespace MicroServiceWorkshop.RapidsRivers
                     else
                         problems.Error($"Forbidden key \'{key}\' actually exists");
                 }
+            }
+        }
+
+        private class LimitRepublishCount : IValidation
+        {
+            private readonly int _limit;
+
+            internal LimitRepublishCount(int limit)
+            {
+                _limit = limit;
+            }
+
+            public void Validate(JObject jsonPacket, PacketProblems problems)
+            {
+                if (IsMissingValue(jsonPacket[RepublishCountKey])) return;
+                int republishCount = (int)jsonPacket[RepublishCountKey];
+                if (republishCount >= _limit)
+                    problems.SevereError($"Republish count of {republishCount} exceeds limit of {_limit}");
             }
         }
     }

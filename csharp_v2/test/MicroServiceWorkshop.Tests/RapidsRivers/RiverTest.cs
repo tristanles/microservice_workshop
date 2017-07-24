@@ -35,14 +35,15 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
         private const string InvalidReadCountValue =
             "{\"frequent_renter\":\"\",\"system_republish_count\":\"erroneous_value\"}";
 
+        private const string MaximumRepublishCount =
+            "{\"frequent_renter\":\"\",\"system_republish_count\":4}";
+
         private const string NeedKey = "need";
         private const string UserIdKey = "user_id";
         private const string SampleFloatKey = "sample_float_key";
-        private const string KeyToBeAdded = "key_to_be_added";
         private const string EmptyArrayKey = "contributing_services";
         private const string EmptyStringKey = "frequent_renter";
         private const string InterestingKey = "frequent_renter";
-        private const string SolutionsKey = "solutions";
         private const string ReadCountKey = "system_republish_count";
 
         private TestRapidsConnection _rapidsConnection;
@@ -268,6 +269,18 @@ namespace MicroServiceWorkshop.Tests.RapidsRivers
                 Assert.AreEqual(1, (int)jsonPacket[ReadCountKey]);
             }));
             _rapidsConnection.Process(InvalidReadCountValue);
+        }
+
+        [Test]
+        public void RepublishLimitReached()
+        {
+            _river.RepublishLimit(4);
+            _river.Register(new TestRiver((connection, problems) =>
+            {
+                Assert.True(problems.HasErrors());
+                Assert.That(problems.ToString(), Does.Contain("4"));
+            }));
+            _rapidsConnection.Process(MaximumRepublishCount);
         }
 
         // Understands a mock RapidsConnection to allow tests to send messages
