@@ -45,14 +45,14 @@ public class RiverTest {
     private River river;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         rapidsConnection = new TestRapidsConnection();
         river = new River(rapidsConnection);
         rapidsConnection.register(river);
     }
 
     @Test
-    public void validJsonExtracted() throws Exception {
+    public void validJsonExtracted() {
         river.register(new TestPacketListener () {
             @Override
             public void packet(RapidsConnection connection, Packet packet, PacketProblems warnings) {
@@ -63,7 +63,7 @@ public class RiverTest {
     }
 
     @Test
-    public void invalidJsonFormat() throws Exception {
+    public void invalidJsonFormat() {
         river.register(new TestPacketListener () {
             @Override
             public void onError(RapidsConnection connection, PacketProblems errors) {
@@ -74,7 +74,7 @@ public class RiverTest {
     }
 
     @Test
-    public void requiredKeyExists() throws Exception {
+    public void requiredKeyExists() {
         river.require(NEED_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -86,7 +86,7 @@ public class RiverTest {
     }
 
     @Test
-    public void missingRequiredKey() throws Exception {
+    public void missingRequiredKey() {
         river.require("missing key");
         river.register(new TestPacketListener() {
             @Override
@@ -98,7 +98,7 @@ public class RiverTest {
     }
 
     @Test
-    public void requiredKeyChangeable() throws Exception {
+    public void requiredKeyChangeable() {
         river.require(NEED_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -112,7 +112,7 @@ public class RiverTest {
     }
 
     @Test
-    public void forbiddenFieldChangeable() throws Exception {
+    public void forbiddenFieldChangeable() {
         river.forbid(KEY_TO_BE_ADDED);
         river.register(new TestPacketListener() {
             @Override
@@ -126,7 +126,7 @@ public class RiverTest {
     }
 
     @Test
-    public void emptyArrayPassesForbidden() throws Exception {
+    public void emptyArrayPassesForbidden() {
         river.forbid(EMPTY_ARRAY_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -138,7 +138,7 @@ public class RiverTest {
     }
 
     @Test
-    public void emptyStringPassesForbidden() throws Exception {
+    public void emptyStringPassesForbidden() {
         river.forbid(INTERESTING_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -150,7 +150,7 @@ public class RiverTest {
     }
 
     @Test
-    public void forbiddenFieldRejected() throws Exception {
+    public void forbiddenFieldRejected() {
         river.forbid(NEED_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -162,7 +162,7 @@ public class RiverTest {
     }
 
     @Test
-    public void emptyArrayFailsRequire() throws Exception {
+    public void emptyArrayFailsRequire() {
         river.require(EMPTY_ARRAY_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -174,7 +174,7 @@ public class RiverTest {
     }
 
     @Test
-    public void emptyStringFailsRequire() throws Exception {
+    public void emptyStringFailsRequire() {
         river.require(EMPTY_STRING_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -186,7 +186,7 @@ public class RiverTest {
     }
 
     @Test
-    public void interestingFieldsIdentified() throws Exception {
+    public void interestingFieldsIdentified() {
         river.interestedIn(INTERESTING_KEY);
         river.register(new TestPacketListener() {
             @Override
@@ -200,7 +200,7 @@ public class RiverTest {
     }
 
     @Test
-    public void renderingJson() throws Exception {
+    public void renderingJson() {
         river.register(new TestPacketListener () {
             @Override
             public void packet(RapidsConnection connection, Packet packet, PacketProblems warnings) {
@@ -213,7 +213,7 @@ public class RiverTest {
     }
 
     @Test
-    public void changedKeyJson() throws Exception {
+    public void changedKeyJson() {
         river.require(NEED_KEY);
         river.register(new TestPacketListener () {
             @Override
@@ -229,7 +229,7 @@ public class RiverTest {
     }
 
     @Test
-    public void traitChaining() throws Exception {
+    public void traitChaining() {
         river
                 .require(NEED_KEY)
                 .forbid(EMPTY_ARRAY_KEY, KEY_TO_BE_ADDED)
@@ -244,7 +244,7 @@ public class RiverTest {
     }
 
     @Test
-    public void manipulatingJsonArrays() throws Exception {
+    public void manipulatingJsonArrays() {
         river.require(SOLUTIONS_KEY);
         river.register(new TestPacketListener () {
             @Override
@@ -257,7 +257,7 @@ public class RiverTest {
     }
 
     @Test
-    public void requireValue() throws Exception {
+    public void requireValue() {
         river.requireValue(NEED_KEY, "car_rental_offer");
         river.register(new TestPacketListener () {
             @Override
@@ -269,7 +269,7 @@ public class RiverTest {
     }
 
     @Test
-    public void readCountAddedIfMissing() throws Exception {
+    public void readCountAddedIfMissing() {
         river.register(new TestPacketListener () {
             @Override
             public void packet(RapidsConnection connection, Packet packet, PacketProblems warnings) {
@@ -281,7 +281,7 @@ public class RiverTest {
     }
 
     @Test(expected = PacketProblems.class)
-    public void problemsCanBeThrown() throws Exception {
+    public void problemsCanBeThrown() {
         river.register(new TestPacketListener () {
             @Override
             public void onError(RapidsConnection connection, PacketProblems errors) {

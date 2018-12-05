@@ -6,7 +6,7 @@
 
 package com.nrkei.microservices.rapidsrivers
 
-// Understands issue that arose when analyzing a JSON message
+// Understands issues that arose when analyzing a JSON message
 // Implements Collecting Parameter in Refactoring by Martin Fowler
 class PacketProblems(val originalJson: String) : RuntimeException() {
 

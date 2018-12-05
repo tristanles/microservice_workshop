@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b89823bc-ff12-4279-8140-8f07d2517118" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../java_v2/test/com/nrkei/microservices/rapids_rivers/PacketProblemsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java_v2/test/com/nrkei/microservices/rapids_rivers/PacketProblemsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/Packet.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rapids_rivers/test/com/nrkei/microservices/rapidsrivers/PacketTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java_v2/test/com/nrkei/microservices/rapids_rivers/RiverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java_v2/test/com/nrkei/microservices/rapids_rivers/RiverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rapids_rivers/rapids_rivers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rapids_rivers/rapids_rivers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/PacketProblems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/PacketProblems.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rapids_rivers_test/rapids_rivers_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rapids_rivers_test/rapids_rivers_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,45 +16,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1884540863">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="kt" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Kotlin" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="kt" value="480" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Kotlin" value="480" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+            <state>
+              <caret selection-end-line="6" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#188#340#0" expanded="true" />
@@ -65,10 +34,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/PacketProblems.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="88">
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/rapids_rivers/test/com/nrkei/microservices/rapidsrivers/PacketTest.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="704">
+              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#188#273#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/Packet.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#188#240#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,32 +89,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GradleLocalSettings">
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../../android/android-ActivitySceneTransitionBasic" value="PREVIEW" />
-      </map>
-    </option>
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt" />
         <option value="$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/PacketProblems.kt" />
+        <option value="$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/Packet.kt" />
+        <option value="$PROJECT_DIR$/rapids_rivers/test/com/nrkei/microservices/rapidsrivers/PacketTest.kt" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="378" />
     <option name="y" value="7" />
-    <option name="width" value="2820" />
-    <option name="height" value="1677" />
+    <option name="width" value="2825" />
+    <option name="height" value="1682" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -129,6 +113,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -140,6 +126,17 @@
               <item name="kotlin_v1" type="b2602c69:ProjectViewProjectNode" />
               <item name="rapids_rivers" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kotlin_v1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rapids_rivers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="rapidsrivers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kotlin_v1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rapids_rivers" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kotlin_v1" type="b2602c69:ProjectViewProjectNode" />
@@ -158,8 +155,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -167,8 +162,8 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544001065036" />
-    <property name="last_opened_file_path" value="C:/Program Files/nodejs/node.exe" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544028980067" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../kotlin/klaxon" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -188,7 +183,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in whole project">
     <configuration name="All in rapids_rivers_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="rapids_rivers_test" />
       <option name="PACKAGE_NAME" value="" />
@@ -197,19 +192,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in whole project" type="JUnit" factoryName="JUnit" temporary="true">
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.All in rapids_rivers_test" />
+      <item itemvalue="JUnit.All in whole project" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in whole project" />
         <item itemvalue="JUnit.All in rapids_rivers_test" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_rapids_rivers_test - 2018.12.04 at 18h 12m 02s.xml">
-      <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_rapids_rivers_test - 2018.12.04 at 18h 12m 57s.xml">
-      <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="All_in_rapids_rivers_test - 2018.12.04 at 18h 13m 08s.xml">
       <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
     </history-entry>
@@ -225,12 +232,27 @@
     <history-entry file="All_in_rapids_rivers_test - 2018.12.05 at 10h 00m 07s.xml">
       <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="All_in_rapids_rivers_test - 2018.12.05 at 10h 09m 55s.xml">
+      <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rapids_rivers_test - 2018.12.05 at 10h 11m 09s.xml">
+      <configuration name="All in rapids_rivers_test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rapids_rivers - 2018.12.05 at 10h 56m 43s.xml">
+      <configuration name="All in rapids_rivers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rapids_rivers - 2018.12.05 at 10h 58m 53s.xml">
+      <configuration name="All in rapids_rivers" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_whole_project - 2018.12.05 at 10h 59m 26s.xml">
+      <configuration name="All in whole project" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="216" y="4" width="1611" height="958" extended-state="0" />
+    <frame x="216" y="4" width="1614" height="961" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12899186" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="2" />
       <window_info id="Designer" order="3" />
@@ -238,6 +260,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" auto_hide="true" x="0" y="353" width="1828" height="281" id="Run" internal_type="SLIDING" order="2" type="SLIDING" weight="0.31284916" />
@@ -250,6 +273,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32960895" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -264,27 +288,46 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#188#340#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/PacketProblems.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="88">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rapids_rivers_test/test/com/nrkei/microservices/rapidsrivers/PacketProblemsTest.kt">
+    <entry file="file://$PROJECT_DIR$/rapids_rivers/src/com/nrkei/microservices/rapidsrivers/Packet.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="50" column="13" lean-forward="true" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
+        <state relative-caret-position="462">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#188#340#0" expanded="true" />
+            <element signature="e#188#240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rapids_rivers/test/com/nrkei/microservices/rapidsrivers/PacketTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#188#273#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -354,7 +397,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>rapids_rivers_test</last-edited>
+          <last-edited>rapids_rivers</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
