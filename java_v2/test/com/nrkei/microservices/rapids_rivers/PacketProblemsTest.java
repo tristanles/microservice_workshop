@@ -20,38 +20,38 @@ public class PacketProblemsTest {
     private PacketProblems problems;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         problems = new PacketProblems(VALID_JSON);
     }
 
     @Test
-    public void noProblemsFoundDefault() throws Exception {
+    public void noProblemsFoundDefault() {
         assertFalse(problems.hasErrors());
     }
 
     @Test
-    public void errorsDetected() throws Exception {
+    public void errorsDetected() {
         problems.error("Simple error");
         assertTrue(problems.hasErrors());
         assertThat(problems.toString(), containsString("Simple error"));
     }
 
     @Test
-    public void severeErrorsDetected() throws Exception {
+    public void severeErrorsDetected() {
         problems.severeError("Severe error");
         assertTrue(problems.hasErrors());
         assertThat(problems.toString(), containsString("Severe error"));
     }
 
     @Test
-    public void warningsDetected() throws Exception {
+    public void warningsDetected() {
         problems.warning("Warning explanation");
         assertFalse(problems.hasErrors());
         assertThat(problems.toString(), containsString("Warning explanation"));
     }
 
     @Test
-    public void informationalMessagesDetected() throws Exception {
+    public void informationalMessagesDetected() {
         problems.warning("Information only message");
         assertFalse(problems.hasErrors());
         assertThat(problems.toString(), containsString("Information only message"));
