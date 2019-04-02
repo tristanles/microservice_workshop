@@ -18,6 +18,6 @@ dependencies {
 }
 
 application {
-    mainClassName = "com.nrkei.microservices.AppKt"
+    mainClassName = "com.nrkei.microservices.MonitorKt"
 }
 
