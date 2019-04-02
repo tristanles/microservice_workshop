@@ -1,6 +1,5 @@
 
 plugins {
-    application
     kotlin("jvm") version "1.3.21"
 }
 
@@ -15,9 +14,5 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:1.6.6")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("test-junit"))
-}
-
-application {
-    mainClassName = "com.nrkei.microservices.MonitorKt"
 }
 
