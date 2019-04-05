@@ -16,7 +16,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.4.1")
     testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.13")
-    
+
     testRuntime("org.junit.platform:junit-platform-launcher:1.4.1")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.1")
     testRuntime("org.junit.vintage:junit-vintage-engine:5.4.1")
@@ -29,4 +29,8 @@ tasks.withType<Test> {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<Wrapper> {
+    gradleVersion = "5.3.1"
 }
