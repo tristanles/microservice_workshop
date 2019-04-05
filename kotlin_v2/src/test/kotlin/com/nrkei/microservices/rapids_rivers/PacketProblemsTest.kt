@@ -14,52 +14,51 @@ import org.junit.jupiter.api.Test
  * @author Fred George
  */
 
+private const val VALID_JSON = "{\"key1\":\"value1\"}"
+
+
 // Ensures that PacketProblems operates correctly
 class PacketProblemsTest {
 
-  private var problems: PacketProblems? = null
+  private lateinit var problems: PacketProblems
 
   @BeforeEach
-  fun setUp() {
+  fun setup() {
     problems = PacketProblems(VALID_JSON)
   }
 
+
   @Test
   fun noProblemsFoundDefault() {
-    assertFalse(problems!!.hasErrors())
+    assertFalse(problems.hasErrors())
   }
 
   @Test
   fun errorsDetected() {
-    problems!!.error("Simple error")
-    assertTrue(problems!!.hasErrors())
-    assertThat(problems!!.toString()).contains("Simple error")
+    problems.error("Simple error")
+    assertTrue(problems.hasErrors())
+    assertThat(problems.toString()).contains("Simple error")
   }
 
   @Test
   fun severeErrorsDetected() {
-    problems!!.severeError("Severe error")
-    assertTrue(problems!!.hasErrors())
-    assertThat(problems!!.toString()).contains("Severe error")
-
+    problems.severeError("Severe error")
+    assertTrue(problems.hasErrors())
+    assertThat(problems.toString()).contains("Severe error")
   }
 
   @Test
   fun warningsDetected() {
-    problems!!.warning("Warning explanation")
-    assertFalse(problems!!.hasErrors())
-    assertThat(problems!!.toString()).contains("Warning explanation")
+    problems.warning("Warning explanation")
+    assertFalse(problems.hasErrors())
+    assertThat(problems.toString()).contains("Warning explanation")
 
   }
 
   @Test
   fun informationalMessagesDetected() {
-    problems!!.warning("Information only message")
-    assertFalse(problems!!.hasErrors())
-    assertThat(problems!!.toString()).contains("Information only message")
-  }
-
-  companion object {
-    private val VALID_JSON = "{\"key1\":\"value1\"}"
+    problems.warning("Information only message")
+    assertFalse(problems.hasErrors())
+    assertThat(problems.toString()).contains("Information only message")
   }
 }
