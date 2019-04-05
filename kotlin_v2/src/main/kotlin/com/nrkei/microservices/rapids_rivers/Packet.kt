@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken
 class Packet private constructor(private val jsonHash: MutableMap<String, Any?>, private val problems: PacketProblems) {
   private val recognizedKeys = mutableMapOf<String, Any?>()
 
-
   constructor(jsonHash: MutableMap<String, Any?>) : this(jsonHash, PacketProblems.Empty) {
     incrementCounter()
   }
