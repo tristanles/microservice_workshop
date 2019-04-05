@@ -2,9 +2,12 @@ package com.nrkei.microservices.rapids_rivers
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.fail as fail //to avoid using api.Assertions.fail, see https://github.com/junit-team/junit5/issues/1209
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.assertThrows
 
 
 /*
@@ -14,12 +17,13 @@ import org.junit.Test
  */
 
 // Ensures that River triggers its RiverListeners with correct Packets
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class RiverTest {
 
   private var rapidsConnection: TestRapidsConnection? = null
   private var river: River? = null
 
-  @Before
+  @BeforeEach
   fun setUp() {
     rapidsConnection = TestRapidsConnection()
     river = River(rapidsConnection!!)
@@ -237,14 +241,16 @@ class RiverTest {
     rapidsConnection!!.process("{}")
   }
 
-  @Test(expected = PacketProblems::class)
+  @Test
   fun problemsCanBeThrown() {
     river!!.register(object : TestPacketListener() {
       override fun onError(connection: RapidsConnection, errors: PacketProblems) {
         throw errors
       }
     })
-    rapidsConnection!!.process(MISSING_COMMA)
+
+    assertThrows<PacketProblems> { rapidsConnection!!.process(MISSING_COMMA) }
+
   }
 
   private fun assertJsonEquals(expected: String, actual: String) {
