@@ -27,6 +27,7 @@ object Membership : River.PacketListener {
       lastChar.toInt() in 0..2 -> "member" to "silver"
       lastChar.toInt() in 3..6 -> "member" to "gold"
       else -> "member" to "platinium"
+
     }
   }
 
