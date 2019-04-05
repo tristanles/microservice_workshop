@@ -24,6 +24,7 @@ class River(private val rapidsConnection: RapidsConnection) : RapidsConnection.M
   override fun message(sendPort: RapidsConnection, message: String) {
     val problems = PacketProblems(message)
     val packet = Packet(message, problems)
+
     validations.forEach { it.validate(packet) }
     if (problems.hasErrors())
       onError(sendPort, problems)
@@ -32,6 +33,8 @@ class River(private val rapidsConnection: RapidsConnection) : RapidsConnection.M
   }
 
   private fun packet(sendPort: RapidsConnection, packet: Packet, warnings: PacketProblems) {
+
+
     for (l in listeners) l.packet(sendPort, packet, warnings)
   }
 
